@@ -8,7 +8,7 @@ const auth = require("./routes/auth/index.js");
 
 require('dotenv').config();
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors({ origin: true, methods: "GET,HEAD,PUT,PATCH,DELETE", credentials: true }));
 
