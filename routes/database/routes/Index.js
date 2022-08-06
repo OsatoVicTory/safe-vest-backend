@@ -46,7 +46,7 @@ router.post("/user", (req, res) => {
             var ref = ["userInvestments", "userTargetsavings","userSafelocks"];
             for(var i=0;i<3;i++) {
                 const data = await models[i].find();
-                Data[ref[i]] = await filterData(data, authUser.user_id);
+                Data[ref[i]] = filterData(data, authUser.user_id);
             }
             return { "message": Data };
         } catch (err) {
