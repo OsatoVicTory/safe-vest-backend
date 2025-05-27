@@ -23,11 +23,8 @@ const uri = process.env.MONGODB_ATLAS_URI;
 const connectMongo = async () => {
     try {
         mongoose.set('strictQuery', false);
-        await mongoose.connect(uri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-        console.log('mongodb connected successfully')
+        await mongoose.connect(uri);
+        console.log('mongodb connected successfully');
     } catch (err) {
         console.log('error', err);
     }
