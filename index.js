@@ -20,13 +20,27 @@ app.use("/api/auth", auth);
 
 
 const uri = process.env.MONGODB_ATLAS_URI;
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}, (err) => {
-    if(err) console.log(err);
-    else console.log("mongodb connected succefully");
-});
+const connectMongo = async () => {
+    try {
+        mongoose.set('strictQuery', false);
+        await mongoose.connect(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log('mongodb connected successfully')
+    } catch (err) {
+        console.log('error', err);
+    }
+};
+connectMongo();
+
+// mongoose.connect(uri, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// }, (err) => {
+//     if(err) console.log(err);
+//     else console.log("mongodb connected succefully");
+// });
 
 //for mongodb
 app.use("/api/db", database);
